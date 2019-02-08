@@ -44,7 +44,7 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deckCount[0] = 0;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Single Scoirng Card in Hand Test PASSED\n");
+        printf("Single Scoring Card in Hand Test PASSED\n");
     } else {
         printf("Single Scoring Card in Hand Test FAILED\n");
         printf("Expected score = 1, score returned = %d\n", scoreReturn);
