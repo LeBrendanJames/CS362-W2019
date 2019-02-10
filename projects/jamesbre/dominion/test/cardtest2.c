@@ -6,6 +6,14 @@
 // adventurer
 
 void adventurerUnitTests(){
+	int numTests = 0, numFailures = 0, i = 0;
+	struct gameState * state = NULL;
+	int returnVal = 0;
+
+	printf("\n");
+	printf("TEST FAILURES\n");
+	printf("---------------------------\n");
+
 	// Check that player hand has two more treasure after running function
 		// Of each type too (like make sure it works regardless of whether the treasure is copper/silver/gold)
 	
@@ -22,7 +30,12 @@ void adventurerUnitTests(){
 	// If there's only one treasure remaining in deck + discard pile, make sure it just picks up that one treasure
 
 	// Check that game state/ other player hands/ kingdom cards/ victory piles are unaffected
-	
+
+
+
+	printf("\nSUMMARY\n");
+	printf("---------------------------\n");
+	printf("Tests Run: %d, Tests Failed: %d\n\n", numTests, numFailures);
 }
 
 
