@@ -7,11 +7,18 @@
 
 //int scoreFor (int player, struct gameState *state) {
 
-void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE FUNCTION IS MISSING?**
+void scoreForUnitTests(){
     struct gameState * state = NULL;
     int scoreReturn = 0;
+    int numTests = 0, numFailures = 0;
 
-    // Normal hand, no scoring cards
+    printf("Function Under Test: scoreFor\n");
+
+    printf("\n");
+    printf("TEST FAILURES\n");
+    printf("---------------------------\n");
+
+  // Normal hand, no scoring cards
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -27,15 +34,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][2] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 0){
-        printf("Normal Hand (No Scoring Cards) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (No Scoring Cards) Test Failed\n");
-        printf("Expected score = 0, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Hand With No Scoring Cards Test FAILED\n");
+        printf("--> Expected score = 0, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Single scoring card in hand, no other cards
+  // Single scoring card in hand, no other cards
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 1;
@@ -44,15 +53,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deckCount[0] = 0;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Single Scoring Card in Hand Test PASSED\n");
+        numTests++;
     } else {
+        numTests++;
+        numFailures++;
         printf("Single Scoring Card in Hand Test FAILED\n");
-        printf("Expected score = 1, score returned = %d\n", scoreReturn);
+        printf("--> Expected score = 1, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Single card in discard, no other cards
+  // Single card in discard, no other cards
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 0;
@@ -61,15 +72,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deckCount[0] = 0;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Single Scoring Card in Discard Test PASSED\n");
+        numTests++;
     } else {
+        numTests++;
+        numFailures++;
         printf("Single Scoring Card in Discard Test FAILED\n");
-        printf("Expected score = 1, score returned = %d\n", scoreReturn);
+        printf("--> Expected score = 1, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 	
-    // Single card in deck, no other cards
+  // Single card in deck, no other cards
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 0;
@@ -78,15 +91,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][0] = estate;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Single Scoring Card in Deck Test PASSED\n");
+        numTests++;
     } else {
+        numTests++;
+        numFailures++;
         printf("Single Scoring Card in Deck Test FAILED\n");
-        printf("Expected score = 1, score returned = %d\n", scoreReturn);
+        printf("--> Expected score = 1, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Normal hand (multiple cards), with scoring cards in hand
+  // Normal hand (multiple cards), with scoring cards in hand
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -102,15 +117,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][2] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 3){
-        printf("Normal Hand (multiple cards) Test with Scoring in Hand Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (multiple cards) Test with Scoring in Hand Failed\n");
-        printf("Expected score = 3, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (multiple cards) Test with Scoring in Hand FAILED\n");
+        printf("--> Expected score = 3, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Normal hand, with scoring cards in discard
+  // Normal hand, with scoring cards in discard
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -126,15 +143,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][2] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 2){
-        printf("Normal Hand (scoring cards in discard) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (scoring cards in discard) Test Failed\n");
-        printf("Expected score = 2, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (scoring cards in discard) Test FAILED\n");
+        printf("--> Expected score = 2, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Normal hand, with scoring cards in deck
+  // Normal hand, with scoring cards in deck
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -150,16 +169,18 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][2] = great_hall;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 13){
-        printf("Normal Hand (Scoring Cards in Deck) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (Scoring Cards in Deck) Test Failed\n");
-        printf("Expected score = 13, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (Scoring Cards in Deck) Test FAILED\n");
+        printf("--> Expected score = 13, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
 
-    // has gardens but full deck < 10
+  // has gardens but full deck < 10
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -175,15 +196,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][2] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 0){
-        printf("Normal Hand (Gardens, but <10 cards) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (Gardens, but <10 cards) Test Failed\n");
-        printf("Expected score = 0, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (Gardens, but <10 cards) Test FAILED\n");
+        printf("--> Expected score = 0, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 	
-    // has gardens and full deck == 10
+  // has gardens and full deck == 10
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -201,15 +224,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][4] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Normal Hand (Gardens, = 10 cards) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (Gardens, = 10 cards) Test Failed\n");
-        printf("Expected score = 1, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (Gardens, = 10 cards) Test FAILED\n");
+        printf("--> Expected score = 1, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // has gardens and full deck > 10
+  // has gardens and full deck > 10
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 3;
@@ -230,15 +255,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][4] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 1){
-        printf("Normal Hand (Gardens, >10 cards) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (Gardens, >10 cards) Test Failed\n");
-        printf("Expected score = 1, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (Gardens, >10 cards) Test FAILED\n");
+        printf("--> Expected score = 1, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 	
-	// has gardens and full deck == 20
+  // has gardens and full deck == 20
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 8;
@@ -266,15 +293,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][4] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 2){
-        printf("Normal Hand (Gardens, >10 cards) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (Gardens, >10 cards) Test Failed\n");
-        printf("Expected score = 2, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (Gardens, >10 cards) Test FAILED\n");
+        printf("--> Expected score = 2, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Has all types of scoring cards in hand
+  // Has all types of scoring cards in hand
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 6;
@@ -292,15 +321,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][1] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 11){
-        printf("Normal Hand (All scoring Cards in Hand) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (All scoring Cards in Hand) Test Failed\n");
-        printf("Expected score = 11, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (All scoring Cards in Hand) Test FAILED\n");
+        printf("--> Expected score = 11, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 	
-    // has all types of scoring cards in discard
+  // has all types of scoring cards in discard
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 6;
@@ -322,15 +353,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
     state->deck[0][1] = smithy;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 11){
-        printf("Normal Hand (All scoring Cards in Discard) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (All scoring Cards in Discard) Test Failed\n");
-        printf("Expected score = 11, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (All scoring Cards in Discard) Test FAILED\n");
+        printf("--> Expected score = 11, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 	
-    // Has all types of scoring cards in deck
+  // Has all types of scoring cards in deck
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 6;
@@ -356,15 +389,17 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][5] = gardens;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 11){
-        printf("Normal Hand (All scoring Cards in Deck) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (All scoring Cards in Deck) Test Failed\n");
-        printf("Expected score = 11, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (All scoring Cards in Deck) Test FAILED\n");
+        printf("--> Expected score = 11, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Has all scoring cards in all 3 categories
+  // Has all scoring cards in all 3 categories
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->handCount[0] = 6;
@@ -390,17 +425,19 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	state->deck[0][5] = gardens;
     scoreReturn = scoreFor(0, state);
     if (scoreReturn == 33){
-        printf("Normal Hand (All scoring Cards in all three areas) Test Passed\n");
+        numTests++;
     } else {
-        printf("Normal Hand (All scoring Cards in all three areas) Test Failed\n");
-        printf("Expected score = 33, score returned = %d\n", scoreReturn);
+        numTests++;
+        numFailures++;
+        printf("Normal Hand (All scoring Cards in all three areas) Test FAILED\n");
+        printf("--> Expected score = 33, score returned = %d\n\n", scoreReturn);
     }
     free(state);
     state = NULL;
 
-    // Checks that nothing about state changes with this function
+  // Checks that nothing about state changes with this function
     state = malloc(sizeof(struct gameState));
-	struct gameState stateCopy = malloc(sizeof(struct gameState)); 
+	struct gameState * stateCopy = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
 	stateCopy->numPlayers = 3;
     state->handCount[0] = 1;
@@ -417,23 +454,74 @@ void scoreForUnitTests(){ //**ARE THERE OTHER CARDS THAT SHOULD SCORE THAT THE F
 	stateCopy->deck[0][0] = curse;
     scoreReturn = scoreFor(0, state);
     if (state->numPlayers == stateCopy->numPlayers){
-        printf("No Change in numPlayers Variable Test Passed\n");
+        numTests++;
     } else {
-        printf("No Change in numPlayers Variable Test Failed\n");
-        printf("state numPlayers = %d, stateCopy numPlayers = %d\n", state->numPlayers, stateCopy->numPlayers);
+        numTests++;
+        numFailures++;
+        printf("No Change in numPlayers Variable Test FAILED\n");
+        printf("--> state numPlayers = %d, stateCopy numPlayers = %d\n\n", state->numPlayers, stateCopy->numPlayers);
     }
     if (state->handCount[0] == stateCopy->handCount[0]){
-        printf("No Change in handCount[0] Variable Test Passed\n");
+        numTests++;
     } else {
-        printf("No Change in handCount[0] Variable Test Failed\n");
-        printf("state handCount[0] = %d, stateCopy handCount[0] = %d\n", state->handCount[0], stateCopy->handCount[0]);
+        numTests++;
+        numFailures++;
+        printf("No Change in handCount[0] Variable Test FAILED\n");
+        printf("--> state handCount[0] = %d, stateCopy handCount[0] = %d\n\n", state->handCount[0], stateCopy->handCount[0]);
     }
-	// Add more checks like the two above
-	
+    if (state->hand[0][0] == stateCopy->hand[0][0]){
+        numTests++;
+    } else {
+        numTests++;
+        numFailures++;
+        printf("No Change in hand[0][0] Variable Test FAILED\n");
+        printf("--> state hand[0][0] = %d, stateCopy hand[0][0] = %d\n\n", state->hand[0][0], stateCopy->hand[0][0]);
+    }
+    if (state->discardCount[0] == stateCopy->discardCount[0]){
+        numTests++;
+    } else {
+        numTests++;
+        numFailures++;
+        printf("No Change in discardCount[0] Variable Test FAILED\n");
+        printf("--> state discardCount[0] = %d, stateCopy discardCount[0] = %d\n\n",
+               state->discardCount[0], stateCopy->discardCount[0]);
+    }
+    if (state->discard[0][0] == stateCopy->discard[0][0]){
+        numTests++;
+    } else {
+        numTests++;
+        numFailures++;
+        printf("No Change in discard[0][0] Variable Test FAILED\n");
+        printf("--> state discard[0][0] = %d, stateCopy discard[0][0] = %d\n\n",
+               state->discard[0][0], stateCopy->discard[0][0]);
+    }
+    if (state->deckCount[0] == stateCopy->deckCount[0]){
+        numTests++;
+    } else {
+        numTests++;
+        numFailures++;
+        printf("No Change in deckCount[0] Variable Test FAILED\n");
+        printf("--> state deckCount[0] = %d, stateCopy deckCount[0] = %d\n\n",
+               state->deckCount[0], stateCopy->deckCount[0]);
+    }
+    if (state->deck[0][0] == stateCopy->deck[0][0]){
+        numTests++;
+    } else {
+        numTests++;
+        numFailures++;
+        printf("No Change in deck[0][0] Variable Test FAILED\n");
+        printf("--> state deck[0][0] = %d, stateCopy deck[0][0] = %d\n\n",
+               state->deck[0][0], stateCopy->deck[0][0]);
+    }
+
     free(state);
     state = NULL;
 	free(stateCopy);
 	stateCopy = NULL;
+
+    printf("\nSUMMARY\n");
+	printf("---------------------------\n");
+	printf("Tests Run: %d, Tests Failed: %d\n\n", numTests, numFailures);
 }
 
 

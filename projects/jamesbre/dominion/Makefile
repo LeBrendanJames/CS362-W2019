@@ -32,8 +32,48 @@ runtests: testDrawCard
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+	
+unittestresults: test/unittest1.c test/unittest2.c test/unittest3.c test/unittest4.c test/cardtest1.c test/cardtest2.c test/cardtest3.c test/cardtest4.c dominion.h dominion_helpers.h dominion.c
+	echo "Results of running unit tests:" >> unittestresults.out
+	
+	gcc -c test/unittest1.c test/unittest2.c test/unittest3.c test/unittest4.c test/cardtest1.c test/cardtest2.c test/cardtest3.c test/cardtest4.c dominion.h dominion_helpers.h dominion.c rngs.h rngs.c -g $(CFLAGS)
+	
+	echo "unittest1.c:" >> unittestresults.out
+	gcc -o unittest1 unittest1.o dominion.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	
+	echo "unittest2.c:" >> unittestresults.out
+	gcc -o unittest2 unittest2.o dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	
+	echo "unittest3.c:" >> unittestresults.out
+	gcc -o unittest3 unittest3.o dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	
+	echo "unittest4.c:" >> unittestresults.out
+	gcc -o unittest4 unittest4.o dominion.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	
+	echo "cardtest1.c:" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.o dominion.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+	
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.o dominion.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.o dominion.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	
+	echo "cardtest4.c:" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.o dominion.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	
+	gcov dominion.c -b -f >> unittestresults.out
 
 all: playdom player 
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
