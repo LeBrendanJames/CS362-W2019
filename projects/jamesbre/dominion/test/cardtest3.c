@@ -92,7 +92,6 @@ void villageUnitTests(){
         printf("Village: numActions updated - Test FAILED\n");
         printf("Expected numActions: 3. Actual numActions: %d\n\n", state->numActions);
     }
-<<<<<<< HEAD
     free(state);
     state = NULL;
 	
@@ -186,16 +185,6 @@ void villageUnitTests(){
         printf("Village: existing discards unchanged - Test FAILED\n");
         printf("Expected card on bottom of discard pile: 7. Actual card: %d\n\n", state->discard[0][0]);
     }
-=======
-	
-	// Check that village card is discarded properly
-    // Card not in hand
-    // Top of discard pile = village
-		
-	// Check that the rest of the gameState is unaffected
-
-
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
 
     printf("\nSUMMARY\n");
     printf("---------------------------\n");

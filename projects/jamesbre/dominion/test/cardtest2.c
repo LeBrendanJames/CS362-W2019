@@ -326,7 +326,6 @@ void adventurerUnitTests(){
     state = NULL;
 
 	// Check that game state/ other player hands/ kingdom cards/ victory piles are unaffected
-<<<<<<< HEAD
     state = malloc(sizeof(struct gameState));
     state->numPlayers = 3;
     state->whoseTurn = 0;
@@ -392,8 +391,6 @@ void adventurerUnitTests(){
         printf("Expected deckCount for each player: 5. Actual counts: [%d, %d]\n\n",
                state->deckCount[1], state->deckCount[2]);
     }
-=======
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
 
 
 

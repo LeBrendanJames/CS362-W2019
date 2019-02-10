@@ -27,11 +27,7 @@ void endTurnUnitTests(){
     }
     state->discardCount[0] = 0;
     state->handCount[0] = 0;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->handCount[0] == 0){
         numTests++;
     } else {
@@ -56,11 +52,7 @@ void endTurnUnitTests(){
     for (i = 0; i < state->handCount[0]; i++){
         state->hand[0][i] = 12;
     }
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->handCount[0] == 0){
         numTests++;
     } else {
@@ -85,11 +77,7 @@ void endTurnUnitTests(){
     for (i = 0; i < state->handCount[0]; i++){
         state->hand[0][i] = 12;
     }
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->discardCount[0] == 5){
         numTests++;
     } else {
@@ -114,11 +102,7 @@ void endTurnUnitTests(){
     state->hand[0][0] = 4;
     state->hand[0][1] = 5;
     state->hand[0][2] = 6;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->discard[0][0] == 4 && state->discard[0][1] == 5 && state->discard[0][2] == 6){
         numTests++;
     } else {
@@ -146,11 +130,7 @@ void endTurnUnitTests(){
     state->hand[0][0] = 4;
     state->hand[0][1] = 5;
     state->hand[0][2] = 6;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->discardCount[0] == 5){
         numTests++;
     } else {
@@ -197,11 +177,7 @@ void endTurnUnitTests(){
     }
     state->handCount[2] = 0;
 
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
 
     if (state->deckCount[0] == 5){
         numTests++;
@@ -253,11 +229,7 @@ void endTurnUnitTests(){
     state->hand[0][0] = 4;
     state->hand[0][1] = 5;
     state->hand[0][2] = 6;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->whoseTurn == 1){
         numTests++;
     } else {
@@ -282,11 +254,7 @@ void endTurnUnitTests(){
     state->hand[0][0] = 4;
     state->hand[0][1] = 5;
     state->hand[0][2] = 6;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->whoseTurn == 0){
         numTests++;
     } else {
@@ -308,11 +276,7 @@ void endTurnUnitTests(){
     }
     state->discardCount[0] = 0;
     state->handCount[0] = 0;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->handCount[0] == 5){
         numTests++;
     } else {
@@ -340,11 +304,7 @@ void endTurnUnitTests(){
     state->coins = 12;
     state->numBuys = 0;
     state->playedCardCount = 5;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->outpostPlayed == 0){
         numTests++;
     } else {
@@ -409,11 +369,7 @@ void endTurnUnitTests(){
     }
     state->discardCount[0] = 0;
     state->handCount[0] = 0;
-<<<<<<< HEAD
     endTurn(state);
-=======
-    returnVal = endTurn(state);
->>>>>>> 685e4f84e594c5f8acbe873bd9dae6b74268f99b
     if (state->whoseTurn == 2){
         numTests++;
     } else {
