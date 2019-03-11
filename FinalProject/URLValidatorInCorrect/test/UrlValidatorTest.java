@@ -128,7 +128,7 @@ public class UrlValidatorTest extends TestCase {
      int errorCount = 0;
      long options =
              UrlValidator.ALLOW_2_SLASHES
-                 + UrlValidator.ALLOW_ALL_SCHEMES
+                 // + UrlValidator.ALLOW_ALL_SCHEMES
                  + UrlValidator.NO_FRAGMENTS;
      UrlValidator urlVal = new UrlValidator(null, null, options);
 
