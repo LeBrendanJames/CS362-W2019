@@ -35,7 +35,7 @@ public class UrlValidatorTest extends TestCase {
 	   String inputStr;
        long options =
                UrlValidator.ALLOW_2_SLASHES
-                   + UrlValidator.ALLOW_ALL_SCHEMES
+                   //+ UrlValidator.ALLOW_ALL_SCHEMES
                    + UrlValidator.NO_FRAGMENTS;
        UrlValidator urlVal = new UrlValidator(null, null, options);
 
@@ -46,16 +46,20 @@ public class UrlValidatorTest extends TestCase {
 
 		   // Run input through URLValidator
 		   if (inputStr.contentEquals("quit") == false) {
-			   boolean result = urlVal.isValid(inputStr);
-			   // Print results from URLValidator
-			   System.out.println("URLValidator returned " + result + " for input URL: " + inputStr);
+			   try {
+				   boolean result = urlVal.isValid(inputStr);
+				   // Print results from URLValidator
+				   System.out.println("URLValidator returned " + result + " for input URL: " + inputStr);
+			   } catch (Error e) {
+				   System.out.println("Error caught: " + e);
+			   }
 		   }
 
 
 	   } while (inputStr.contentEquals("quit") == false);
 
 
-	   System.out.print("Quitting manual testing");
+	   System.out.println("Quitting manual testing");
    }
 
    // method testIsValid is used for unit/programming based testing
