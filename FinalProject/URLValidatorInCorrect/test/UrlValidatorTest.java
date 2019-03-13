@@ -95,18 +95,21 @@ public class UrlValidatorTest extends TestCase {
      String[][] paths = {
        {"/12894", "/check.txt", "/.../", "/.", "/$d6"},
        {"/../filepath","/#/filepath","/.."}};
-     String[] queries = {"?a=b", ""};
+     String[][] queries = {
+    		 {"?a=b", ""},
+    		 {"a=b", "?a= b"}};
 
 
      // Check each invalid component arrays combined only with all valid arrays
      // And then one test for combinations of all valid arrays
      // This would eliminate combinations like testURLs(schemes[1], authorities[1], ports[0], paths[0], queries, 0);
      // Where two of the arrays have all invalid values
-     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries, true);
-     testURLs(schemes[1], authorities[0], ports[0], paths[0], queries, false);
-     testURLs(schemes[0], authorities[1], ports[0], paths[0], queries, false);
-     testURLs(schemes[0], authorities[0], ports[1], paths[0], queries, false);
-     testURLs(schemes[0], authorities[0], ports[0], paths[1], queries, false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries[0], true);
+     testURLs(schemes[1], authorities[0], ports[0], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[1], ports[0], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[1], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[1], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries[1], false);
    }
 
    // method testRandomURLs is used for random testing of URL's
@@ -143,7 +146,7 @@ public class UrlValidatorTest extends TestCase {
      int errorCount = 0;
      long options =
              UrlValidator.ALLOW_2_SLASHES
-                 // + UrlValidator.ALLOW_ALL_SCHEMES
+                  //+ UrlValidator.ALLOW_ALL_SCHEMES
                  + UrlValidator.NO_FRAGMENTS;
      UrlValidator urlVal = new UrlValidator(null, null, options);
 
@@ -320,7 +323,6 @@ private String[] generateInvalidPaths(){
  }
  return rtn;
 }
-
 
 
 }
