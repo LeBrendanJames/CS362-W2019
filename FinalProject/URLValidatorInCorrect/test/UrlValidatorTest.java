@@ -31,16 +31,30 @@ public class UrlValidatorTest extends TestCase {
 
    public void testManualTest() throws IOException
    {
-	//You can use this function to implement your manual testing
-	   String inputStr;
-       long options =
-               UrlValidator.ALLOW_2_SLASHES
-                   //+ UrlValidator.ALLOW_ALL_SCHEMES
-                   + UrlValidator.NO_FRAGMENTS;
-       UrlValidator urlVal = new UrlValidator(null, null, options);
+       long options = 0;
+       
+       System.out.println("Using a UrlValidator that only accepts 'http', 'https', 'ftp' as schemes.");
+       loopTest(options);
+       
+       System.out.println("Now we will use a UrlValidator that accepts all schemes.");
+       options = UrlValidator.ALLOW_ALL_SCHEMES;
+       loopTest(options);
 
+	   System.out.println("Quitting manual testing");
+   }
+   
+   public void loopTest(long options) throws IOException {
+	   String inputStr;
+	   UrlValidator urlVal;
+	   
+	   if (options == 0) {
+		   urlVal = new UrlValidator();
+	   } else {
+		   urlVal = new UrlValidator(null, null, options);
+	   }
+	   
 	   do {
-		   System.out.print("Enter the URL you would like to test: ");
+		   System.out.print("Enter the URL you would like to test (or type 'quit' to exit): ");
 		   BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		   inputStr = in.readLine();
 
@@ -51,15 +65,12 @@ public class UrlValidatorTest extends TestCase {
 				   // Print results from URLValidator
 				   System.out.println("URLValidator returned " + result + " for input URL: " + inputStr);
 			   } catch (Error e) {
-				   System.out.println("Error caught: " + e);
+				   System.out.println("UrlValidator threw error: " + e);
 			   }
 		   }
-
-
+		   
 	   } while (inputStr.contentEquals("quit") == false);
-
-
-	   System.out.println("Quitting manual testing");
+	   
    }
 
    // method testIsValid is used for unit/programming based testing
