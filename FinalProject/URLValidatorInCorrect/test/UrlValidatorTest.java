@@ -28,7 +28,7 @@ public class UrlValidatorTest extends TestCase {
       super(testName);
    }
 
-
+   
    public void testManualTest() throws IOException
    {
        long options = 0;
@@ -43,6 +43,8 @@ public class UrlValidatorTest extends TestCase {
 	   System.out.println("Quitting manual testing");
    }
    
+   // Creates a URLValidator with passed in options then loops to allow user input
+   // Loops until user types "quit"
    public void loopTest(long options) throws IOException {
 	   String inputStr;
 	   UrlValidator urlVal;
@@ -72,7 +74,7 @@ public class UrlValidatorTest extends TestCase {
 	   } while (inputStr.contentEquals("quit") == false);
 	   
    }
-
+   
    // method testIsValid is used for unit/programming based testing
    // each component has two hard-coded arrays,
    // the first of valid examples of the component, the second of invalid examples
@@ -111,7 +113,7 @@ public class UrlValidatorTest extends TestCase {
      testURLs(schemes[0], authorities[0], ports[0], paths[1], queries[0], false);
      testURLs(schemes[0], authorities[0], ports[0], paths[0], queries[1], false);
    }
-
+   
    // method testRandomURLs is used for random testing of URL's
    // each component has two randomly generated arrays,
    // the first of valid examples of the component, the second of invalid examples
@@ -125,17 +127,18 @@ public class UrlValidatorTest extends TestCase {
      String[][] authorities = {generateValidAuthority(), generateInvalidAuthority()};
      String[][] ports = {generateValidPorts(), generateInvalidPorts()};
      String[][] paths = {generateValidPaths(), generateInvalidPaths()};
-     String[] queries = {""};
+     String[][] queries = {generateValidQueries(), generateInvalidQueries()};
 
      // Check each invalid component arrays combined only with all valid arrays
      // And then one test for combinations of all valid arrays
      // This would eliminate combinations like testURLs(schemes[1], authorities[1], ports[0], paths[0], queries, 0);
      // Where two of the arrays have all invalid values
-     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries, true);
-     testURLs(schemes[1], authorities[0], ports[0], paths[0], queries, false);
-     testURLs(schemes[0], authorities[1], ports[0], paths[0], queries, false);
-     testURLs(schemes[0], authorities[0], ports[1], paths[0], queries, false);
-     testURLs(schemes[0], authorities[0], ports[0], paths[1], queries, false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries[0], true);
+     testURLs(schemes[1], authorities[0], ports[0], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[1], ports[0], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[1], paths[0], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[1], queries[0], false);
+     testURLs(schemes[0], authorities[0], ports[0], paths[0], queries[1], false);
    }
 
    // testURLs is given an array of examples for each component of a URL, and a boolean value of whether
@@ -146,7 +149,7 @@ public class UrlValidatorTest extends TestCase {
      int errorCount = 0;
      long options =
              UrlValidator.ALLOW_2_SLASHES
-                  //+ UrlValidator.ALLOW_ALL_SCHEMES
+                 + UrlValidator.ALLOW_ALL_SCHEMES
                  + UrlValidator.NO_FRAGMENTS;
      UrlValidator urlVal = new UrlValidator(null, null, options);
 
@@ -322,6 +325,42 @@ private String[] generateInvalidPaths(){
    // System.out.println(rtn[i]);
  }
  return rtn;
+}
+
+private String[] generateValidQueries() {
+	String[] rtn = {"?", "?", "?", "?", "?", "?"};
+	
+	for (int i = 0; i < rtn.length; i++) {
+		// Create random query length
+		int randomLength = (int)(Math.random() * 50);
+		char[] tmpA = new char[randomLength];
+		for (int j = 0; j < randomLength; j++){
+		  int randomChar = (int)(Math.random() * allChars.length);
+		  tmpA[j] += allChars[randomChar];
+		}
+		rtn[i] += new String(tmpA);
+		//System.out.println("Valid query created: " + rtn[i]);
+	}
+	
+	return rtn;
+}
+
+private String[] generateInvalidQueries() {
+	String[] rtn = {"", "", "", "? ", "? ", "? "}; // 3 don't start w/ '?', 3 contain whitespace
+	
+	for (int i = 0; i < rtn.length; i++) {
+		// Create random query length
+		int randomLength = (int)(Math.random() * 50);
+		char[] tmpA = new char[randomLength];
+		for (int j = 0; j < randomLength; j++){
+		  int randomChar = (int)(Math.random() * allChars.length);
+		  tmpA[j] += allChars[randomChar];
+		}
+		rtn[i] += new String(tmpA);
+		//System.out.println("Invalid query created: " + rtn[i]);
+	}
+	
+	return rtn;
 }
 
 
