@@ -99,7 +99,7 @@ public class UrlValidatorTest extends TestCase {
        {"/../filepath","/#/filepath","/.."}};
      String[][] queries = {
     		 {"?a=b", ""},
-    		 {"a=b", "?a= b"}};
+    		 {"?a= b", "? abghty"}};
 
 
      // Check each invalid component arrays combined only with all valid arrays
@@ -346,7 +346,7 @@ private String[] generateValidQueries() {
 }
 
 private String[] generateInvalidQueries() {
-	String[] rtn = {"", "", "", "? ", "? ", "? "}; // 3 don't start w/ '?', 3 contain whitespace
+	String[] rtn = {"? ", "? ", "? "};
 	
 	for (int i = 0; i < rtn.length; i++) {
 		// Create random query length
